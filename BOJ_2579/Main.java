@@ -7,8 +7,9 @@ import java.io.InputStreamReader;
 
 public class Main {
 	static int[] dp;
+	static int[] arr;
 	
-	public static int recursion(int i, int[] arr)
+	private static int recursion(int i)
 	{
 		if(i<=0)
 		{
@@ -20,8 +21,8 @@ public class Main {
 		
 		if(i>=3)
 		{
-			var1 = (dp[i-3]==0 ? recursion(i-3, arr) : dp[i-3]);
-			var2 = (dp[i-2]==0 ? recursion(i-2, arr) : dp[i-2]);
+			var1 = (dp[i-3]==0 ? recursion(i-3) : dp[i-3]);
+			var2 = (dp[i-2]==0 ? recursion(i-2) : dp[i-2]);
 		}
 		
 		return dp[i] = Math.max(
@@ -30,18 +31,14 @@ public class Main {
 								);
 	}
 	
-	public static int solution(int n, int[] arr)
-	{	
-		if(n<=0)
-		{
-			return 0;
-		}
-		
+	public static int solution(int n)
+	{			
 		// 마지막 계단 이전 계단을 밟은 경우
-		int var1 = arr[n] + arr[n-1] + recursion(n-3, arr);
+		int var1 = arr[n] + arr[n-1] + recursion(n-3);
 		// 마지막 계단 이전 계단을 밟지 않은 경우
-		int var2 = arr[n] + recursion(n-2, arr);
-		
+		int var2 = arr[n] + recursion(n-2);
+	
+		// 위의 두가지 경우중 값이 큰것을 반환
 		return Math.max(var1, var2);
 	}
 	
@@ -50,7 +47,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int n = Integer.parseInt(br.readLine());
-		int[] arr = new int[n+1];
+		arr = new int[n+1];
 		dp = new int[n+1];
 		
 		for(int i=1;i<=n;i++)
@@ -58,7 +55,6 @@ public class Main {
 			arr[i] = Integer.parseInt(br.readLine());
 		}
 		
-		System.out.println(solution(n, arr));
-		
+		System.out.println(solution(n));		
 	}
 }
