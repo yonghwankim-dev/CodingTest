@@ -61,7 +61,5 @@ public class Main {
 			
 			solution(p1, p2);	
 		}
-		
-		
 	}
 }

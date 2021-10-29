@@ -1,46 +1,27 @@
-/**
- * 힙정렬 응용 : 우선순위 큐
- */
 
 package BOJ_11279;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
-
 public class Main {
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		// TODO Auto-generated method stub
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
-		
-		int tc = Integer.parseInt(br.readLine());
-		
-		for(int i=0;i<tc;i++)
+	public static StringBuilder sb;
+	public static void solution(int n, int from, int to, int by)
+	{
+		if(n==1)
 		{
-			int key = Integer.parseInt(br.readLine());
-			
-			if(key==0)
-			{
-				if(queue.size()==0)
-				{
-					System.out.println(0);
-				}
-				else
-				{
-					System.out.println(queue.poll());
-				}
-			}
-			else 
-			{
-				queue.add(key);
-				
-			}
+			sb.append(from + " " + to + "\n");
+			return;
 		}
+		solution(n-1, from, by, to);
+		sb.append(from + " " + to + "\n");
+		solution(n-1, by, to, from);
+	}
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		System.out.printf((int) Math.pow(2, n)-1+"\n");
+		sb = new StringBuilder();
+		solution(n,1,3,2);
+		System.out.println(sb.toString());
 	}
 }
