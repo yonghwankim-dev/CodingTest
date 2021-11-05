@@ -71,8 +71,6 @@ public class Main {
 			persons[i] = new Person(weight, height);
 		}
 	
-		System.out.println(solution(persons));
-		
-		
+		System.out.println(solution(persons));		
 	}
 }
