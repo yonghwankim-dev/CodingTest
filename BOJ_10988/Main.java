@@ -6,11 +6,7 @@ import java.io.InputStreamReader;
 
 
 public class Main {
-	/**
-	 * 매개변수(str)의 문자열이 팰린드롬인지 검사
-	 * 팰린드롬이란 앞에서 읽으나 뒤에서 읽으나 동일한 문자이다.
-	 * ex) level
-	 */
+	
 	public static int solution(String str)
 	{
 		StringBuilder sb = new StringBuilder(str);
