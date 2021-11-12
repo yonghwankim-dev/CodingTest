@@ -1,4 +1,4 @@
-package BOJ_11650;
+package BOJ_11651;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class Main {
 	
 	public static void solution(List<Point> list)
 	{
-		list.sort(Comparator.comparing(Point::getX).thenComparing(Point::getY));
+		list.sort(Comparator.comparing(Point::getY).thenComparing(Point::getX));
 		
 		for(Point p : list)
 		{
