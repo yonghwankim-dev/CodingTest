@@ -1,37 +1,60 @@
 package BOJ_10989;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 
 public class Main {
 	
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static int MAX_SIZE = 10000;
 	
-	public static void solution() throws NumberFormatException, IOException
+	public static int[] solution(int[] origin, int n)
 	{
-		int n = Integer.parseInt(br.readLine());
-		List<Integer> list = new ArrayList<Integer>();
-		StringBuilder sb = new StringBuilder();
-		for(int i=0;i<n;i++)
+		int[] count = new int[MAX_SIZE+1];
+		int[] reduce = new int[MAX_SIZE+1];
+		int[] result = new int[n+1];
+
+		
+		// step1 : Counting
+		for(int i=1;i<origin.length;i++)
 		{
-			list.add(Integer.parseInt(br.readLine()));
+			count[origin[i]]++;
 		}
 		
-		Collections.sort(list);
-		list.stream().forEach(item->{sb.append(item+"\n");});
+		// step2 : Sum
+		for(int i=1; i<=MAX_SIZE;i++)
+		{
+			reduce[i] = reduce[i-1]+count[i];
+		}
 		
-		System.out.println(sb.toString());
+		
+		// step3 : origin의 뒤에서부터 순회
+		for(int i=n; i>=1; i--)
+		{
+			result[reduce[origin[i]]] = origin[i];
+			reduce[origin[i]]--;
+		}
+		
+		return result;
 	}
 	
 	public static void main(String args[]) throws IOException
 	{
-		solution();	
+		int n = Integer.parseInt(br.readLine());
+		int[] origin = new int[n+1];
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i=1;i<=n;i++)
+		{
+			origin[i] = Integer.parseInt(br.readLine());
+		}
+		int[] result = solution(origin, n);
+		
+		for(int i=1;i<=n;i++)
+		{
+			sb.append(result[i]+"\n");
+		}
+		System.out.println(sb.toString());
 	}
 }
