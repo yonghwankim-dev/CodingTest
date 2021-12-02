@@ -6,35 +6,39 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Main {
 	
-	public static int findRank(int[] origin_arr, List<Integer> list, int idx)
+	public static String solution(int[] origin_arr)
 	{
-		int rank = 0;
-		for(int i=0;i<list.size();i++)
+		Map<Integer, Integer> map = new HashMap<>();
+		int[] sorted_arr = new int[origin_arr.length];
+		StringBuilder sb = new StringBuilder();
+		
+		System.arraycopy(origin_arr, 0, sorted_arr, 0, origin_arr.length);
+		
+		Arrays.sort(sorted_arr);
+		
+		int point = 0;
+		for(int i=0;i<sorted_arr.length;i++)
 		{
-			if(list.get(i)<origin_arr[idx])
+			if(!map.containsKey(sorted_arr[i]))
 			{
-				rank++;
+				map.put(sorted_arr[i], point);
+				point++;
 			}
 		}
-		return rank; 
-	}
-	
-	public static void solution(int[] origin_arr, List<Integer> list)
-	{
-		Collections.sort(list);
-		int[] answer = new int[origin_arr.length];
 		
 		for(int i=0;i<origin_arr.length;i++)
 		{
-			answer[i] = findRank(origin_arr, list, i); 
+			sb.append(map.get(origin_arr[i]) + " ");
 		}
 		
-		System.out.println(Arrays.toString(answer));
+		return sb.toString().trim();
 	}
 	
 	public static void main(String args[]) throws IOException
@@ -45,14 +49,7 @@ public class Main {
 		String[] str = br.readLine().split(" ");
 		int[] origin_arr = Arrays.stream(str).mapToInt(Integer::parseInt).toArray();
 		
-		ArrayList<Integer> list = new ArrayList<>();
-		for(int item : origin_arr)
-		{
-			list.add(item);
-		}
-		
-		solution(origin_arr, list);
-		
+		System.out.println(solution(origin_arr));
 		
 	}
 }
