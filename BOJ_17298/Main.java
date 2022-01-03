@@ -14,20 +14,16 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		Stack<Integer> stack = new Stack<Integer>();
 		
-		stack.push(0);	// seq[0]은 stack에서 꺼낼것이 없으므로 현재 인덱스를 stack에 push
+		stack.push(0);	// 수열에서 0번째 값은 stack에서 꺼낼것이 없으므로 현재 인덱스 추가
 		
 		for(int i=1;i<n;i++)
 		{
 			// seq[i]와 seq[이전 인덱스] 비교 수행
-			// seq[stack.peek()] < seq[i]
-			// seq[i]은 seq[stack.peek()] 값보다 오른쪽에 있고, seq[stack.peek()]보다 크고, 가장 왼쪽에 있는 수가 됨
-			// seq[stack.peek()] 값을 seq[i]으로 변경
-			// stack이 비거나 seq[i]보다 크다면 반복문 종료
 			while(!stack.isEmpty() && seq[stack.peek()]<seq[i])
 			{
 				seq[stack.pop()] = seq[i];
 			}
-			// stack이 비었거나 seq[i]보다 크므로 i를 stack에 저장
+			// stack이 비었거나 seq[i]보다 크므로 i를 stack에 추가
 			stack.push(i);
 		}
 		
@@ -52,9 +48,12 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int n = Integer.parseInt(br.readLine());
-		// 문자열(String) 배열에서 정수형 배열로 전환
-		int[] seq = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-		
+		// String Array to Integer Array
+		int[] seq = Arrays.stream(
+						br.readLine()
+							.split(" "))
+								.mapToInt(Integer::parseInt)
+									.toArray();
 		
 		System.out.println(solution(seq, n));
 		
