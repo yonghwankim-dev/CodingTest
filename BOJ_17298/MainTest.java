@@ -17,12 +17,12 @@ class MainTest {
 		{
 			arr[i] = 1;
 		}
-		System.out.println(Main.solution2(arr, n));
+		System.out.println(Main.solution(arr, n));
 	}
 	
 	@Disabled
 	@Test
-	void test2() {
+	void test2() {	
 		int n = 5;
 		int[] seq = {9,2,7,8,5};
 		
