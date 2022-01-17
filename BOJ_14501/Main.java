@@ -6,20 +6,22 @@ import java.io.InputStreamReader;
 
 
 public class Main {
-	static int[] t;
-	static int[] p;
-	static int[] dp;	// n일까지의 이익
-	public static int solution(int n)
+	private static int[] t;
+	private static int[] p;
+	private static int[] dp;	// n일까지의 이익
+	public static int solution(int i, int n)
 	{
-		if(n==0)
+		if(i==0)	// 0일차의 최대이익은 0원
 		{
 			return 0;
 		}
-		if(n+t[n]<n+1)
+		
+		if(i+t[i]<=n+1)
 		{
-			return Math.max(p[n]+solution(n-1), n);
+			// i-1일차까지의 최대이익 VS i일차의 이익을 포함한 i-1일차까지(퇴사일 변경)의 최대이익
+			return Math.max(solution(i-1,n), solution(i-1,i-1)+p[i]);	
 		}
-		return 0;
+		return solution(i-1,n);	// i일차를 포함하지 않는 경우
 	}
 	
 	public static void main(String args[]) throws IOException
@@ -37,23 +39,6 @@ public class Main {
 			t[i] = Integer.parseInt(str[0]);
 			p[i] = Integer.parseInt(str[1]);
 		}
-		System.out.println(solution(n));
-		
-//		n = 5;
-//		t = new int[n+1];
-//		p = new int[n+1];
-//		
-//		t[1] = 3;
-//		t[2] = 5;
-//		t[3] = 1;
-//		t[4] = 1;
-//		t[5] = 2;
-//		
-//		p[1] = 10;
-//		p[2] = 20;
-//		p[3] = 10;
-//		p[4] = 20;
-//		p[5] = 15;
-				
+		System.out.println(solution(n,n));
 	}
 }
