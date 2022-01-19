@@ -25,6 +25,7 @@ public class Solution {
         
         return sb.toString();
     }
+    
     public String solution2(String str){
         char[] sol = str.toCharArray();
         Arrays.sort(sol);
