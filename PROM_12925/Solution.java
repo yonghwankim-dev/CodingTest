@@ -19,6 +19,6 @@ public class Solution{
     
 	public static void main(String args[])
 	{
-		System.out.println(solution("+1234"));
+		System.out.println(solution("1234"));
 	}
 }
