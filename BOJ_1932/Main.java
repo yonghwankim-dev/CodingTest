@@ -4,30 +4,31 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 public class Main {	
-	public static int solution(int[][] matrix, int i, int j)
+
+	static int[][] dp;
+	
+	public static void print(int[][] matrix)
 	{
-		if(i<0)
+		for(int i=0;i<matrix.length;i++)
 		{
-			return 0;
-		}
-		
-		int col;
-		if(j-1<0)
-		{
-			col = j;
-		}else 
-		{
-			if(matrix[i-1][j-1]>=matrix[i-1][j])
+			for(int j=0;j<matrix[i].length;j++)
 			{
-				col = j-1;
+				System.out.print(matrix[i][j] + " ");
 			}
-			else 
-			{
-				col = j;
-			}
+			System.out.println();
 		}
-		
-		return matrix[i][j] + solution(matrix, i-1, col);
+	}
+	
+	public static int solution(int[][] matrix, int row, int col, int n)
+	{
+		if(row==n)
+		{
+			return dp[row][col] = matrix[row][col];
+		}
+		dp[row+1][col] = dp[row+1][col]==0 ? solution(matrix, row+1, col, n) : dp[row+1][col];
+		dp[row+1][col+1] = dp[row+1][col+1]==0 ? solution(matrix, row+1, col+1, n) : dp[row+1][col+1];
+		dp[row][col] = matrix[row][col] + Math.max(dp[row+1][col], dp[row+1][col+1]);
+		return dp[row][col];
 	}
 	
 	public static void main(String args[]) throws IOException
@@ -36,6 +37,7 @@ public class Main {
 		
 		int n = Integer.parseInt(br.readLine());
 		int[][] matrix = new int[n][n];
+		dp = new int[n][n];
 		
 		for(int i=0;i<n;i++)
 		{
@@ -45,16 +47,7 @@ public class Main {
 				matrix[i][j] = Integer.parseInt(str[j]);
 			}
 		}
+		System.out.println(solution(matrix, 0,0,n-1));
 		
-		int max = Integer.MIN_VALUE;
-		for(int j=0;j<matrix[matrix.length-1].length;j++)
-		{
-			int result = solution(matrix, matrix.length-1, j);
-			if(max<result)
-			{
-				max = result;
-			}
-		}
-		System.out.println(max);
 	}
 }
