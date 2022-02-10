@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class SolutionTest {
@@ -20,6 +21,7 @@ class SolutionTest {
 			System.out.println(s+":"+Solution.solution(s));
 		}
 	}
+	
 	
 
 	
