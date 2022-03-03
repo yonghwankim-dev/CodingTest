@@ -1,115 +1,49 @@
 package PROM_68645;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Solution2 {
+    public int[] solution(int n) {
+    	// a_n = a1(1) + (n^2+n-2)/2
+    	//	  = 2/2 + (n^2+n-2)/2
+    	//    = (n^2+n)/2
+    	//    = (n(n+1))/2
+        int[] answer = new int[(n*(n+1))/2];
+        int[][] matrix = new int[n][n];
 
-	public static int[]	pasing(int n, int[][] map)
-	{
-		List<Integer> list = new ArrayList<>();
-		
-		for(int i=0;i<n;i++)
-		{
-			for(int j=0; j<n; j++)
-			{
-				if(map[i][j]!=0)
-				{
-					list.add(map[i][j]);
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		
-		return list.stream().mapToInt(Integer::intValue).toArray();
-	}
-	
-	public static boolean isRange(int n, int i, int j)
-	{
-		if(i<0 || i>=n || j<0 || j>=n)
-		{
-			return false;
-		}
-		return true;
-	}
+        int x = -1, y = 0;	// x:row y:col
+        int num = 1;
 
-	
-    public static int[] solution(int n)
-    {
-    	int[][] map = new int[n][n];
-    	int i,j,val;
-    	i=j=val=0;
-    	
-    	while(isRange(n, i, j) && map[i][j]==0)
-    	{
-    		// down
-        	while(i<=n)
-        	{
-        		if(i==n || map[i][j]!=0)
-        		{
-        			i--;
-        			j++;
-        			break;
-        		}
-        		
-        		map[i][j] = ++val;
-        		
-        		i++;
-        	}
-        	
-        	// right
-        	while(j<=n)
-        	{
-        		if(j==n || map[i][j]!=0)
-        		{
-        			i--;
-        			j-=2;
-        			break;
-        		}
-        		
-        		map[i][j] = ++val;
-        		j++;
-        	}
-        	
-        	// upAndLeft
-        	while(isRange(n, i, j))
-        	{
-        		if(map[i][j]!=0 || map[i][j]!=0)
-        		{
-        			i+=2;
-        			j++;
-        			break;
-        		}
-        		map[i][j] = ++val;
-        		i--;
-        		j--;
-        	}
-    	}
-    	
-    	return pasing(n, map);
+        for (int i = 0; i < n; ++i) {
+            for (int j = i; j < n; ++j) {
+                if (i % 3 == 0) {
+                    ++x;
+                } else if (i % 3 == 1) {
+                    ++y;
+                } else if (i % 3 == 2) {
+                    --x;
+                    --y;
+                }
+                matrix[x][y] = num++;
+            }
+        }
+
+        int k = 0;
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < n; ++j) {
+                if(matrix[i][j] == 0) break;
+                answer[k++] = matrix[i][j];
+            }
+        }
+
+        return answer;
     }
     
-    public static void print(int[][] map)
+    public static void main(String[] args)
     {
-    	Arrays.stream(map).forEach((item)->{
-    		Arrays.stream(item).forEach((val)->{
-    			System.out.print(val + " ");
-    		});
-    		System.out.println();
-    	});
-    	System.out.println();
+    	for(int i=1;i<=6;i++)
+    	{
+    		System.out.println(Arrays.toString(new Solution2().solution(i)));
+    	}
     }
-	public static void main(String[] args)
-	{
-		System.out.println(Arrays.toString(solution(1)));
-		System.out.println(Arrays.toString(solution(2)));
-		System.out.println(Arrays.toString(solution(3)));
-		System.out.println(Arrays.toString(solution(4)));
-		System.out.println(Arrays.toString(solution(5)));
-		System.out.println(Arrays.toString(solution(6)));
-	}
 }

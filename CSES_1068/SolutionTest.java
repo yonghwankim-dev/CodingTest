@@ -8,7 +8,7 @@ class SolutionTest {
 
 	@Test
 	void test() {
-		Solution.solution(3);
+		Solution2.solution(3);
 	}
 
 }
