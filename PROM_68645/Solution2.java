@@ -14,13 +14,14 @@ public class Solution2 {
         int x = -1, y = 0;	// x:row y:col
         int num = 1;
 
+        
         for (int i = 0; i < n; ++i) {
             for (int j = i; j < n; ++j) {
-                if (i % 3 == 0) {
+                if (i % 3 == 0) {	// down
                     ++x;
-                } else if (i % 3 == 1) {
+                } else if (i % 3 == 1) {	// right
                     ++y;
-                } else if (i % 3 == 2) {
+                } else if (i % 3 == 2) {	// up & left 
                     --x;
                     --y;
                 }

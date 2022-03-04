@@ -6,40 +6,49 @@ import java.io.InputStreamReader;
 
 
 public class Main {
-	public static int answer = 0;
-	
-	public static void recursion(int i, int cur_len, int n)
+	public static long solution(int n)
 	{
-		if(i>=10 || i<0)
+		long[][] dp = new long[n+1][10];
+		final long DIVISOR = 1000000000;
+		for(int j=1;j<=9;j++)
 		{
-			return;
+			dp[1][j] = 1;
 		}
-		else if(cur_len>=n)
+		
+		for(int i=2;i<=n;i++)
 		{
-			answer++;
-			return;
+			for(int j=0;j<=9;j++)
+			{
+				if(j==0)
+				{
+					dp[i][j] = dp[i-1][j+1] % DIVISOR;
+				}
+				else if(j>=1 && j<=8)
+				{
+					dp[i][j] = (dp[i-1][j-1] + dp[i-1][j+1]) % DIVISOR;
+				}
+				else if(j==9)
+				{
+					dp[i][j] = dp[i-1][j-1] % DIVISOR;
+				}
+			}
 		}
-		else
+		
+		long answer = 0;
+		for(int j=0;j<=9;j++)
 		{
-			recursion(i-1, cur_len+1, n);
-			recursion(i+1, cur_len+1, n);
+			answer += dp[n][j];
 		}
+		
+		return answer %DIVISOR;
 	}
 	
-	public static void solution(int n)
-	{
-		answer = 0;
-		for(int i=1;i<=9;i++)
-		{
-			recursion(i, 1, n);
-		}
-	}
 	public static void main(String args[]) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int n = Integer.parseInt(br.readLine());
-		solution(n);
-		System.out.println(answer%1000000000L);
+		long answer = solution(n);
+		System.out.println(answer);
 	}
 }
