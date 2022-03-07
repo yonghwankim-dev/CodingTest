@@ -56,6 +56,7 @@ public class Main {
 		
 		return D_list.get(D_list.size()-1);
 	}
+	
 	public static int solution(int n, int[] arr, int[] d)
 	{
 		for(int i=1;i<=n;i++)

@@ -19,7 +19,5 @@ public class Main {
 		int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 		int[] dp = new int[arr.length];
 		
-		System.out.println(A+B);
-		
 	}
 }
