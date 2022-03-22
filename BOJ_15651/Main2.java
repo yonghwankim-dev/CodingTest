@@ -1,4 +1,4 @@
-package BOJ_15649;
+package BOJ_15651;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,34 +6,34 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Main {
+public class Main2 {
 	
+	static StringBuilder sb = new StringBuilder();
 	public static void search(int n, int m, List<Integer> p, boolean[] chosen)
 	{
-		if(p.size()==m)
+		if(p.size() == m)
 		{
-			p.stream().forEach(item -> System.out.print(item + " "));
-			System.out.println();
-		}else {
-			for(int i=1;i<=n; i++)
+			p.forEach(item -> sb.append(item+" "));
+			sb.append("\n");
+		}
+		else
+		{
+			for(int i=1; i<=n; i++)
 			{
-				if(chosen[i])
-				{
-					continue;
-				}
+				
 				chosen[i] = true;
 				p.add(i);
- 				
+				
 				search(n, m, p, chosen);
 				
 				chosen[i] = false;
 				p.remove(p.size()-1);
+				
 			}
 		}
 	}
 	
-	public static void main(String args[]) throws IOException
+	public static void main(String[] args) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -44,6 +44,6 @@ public class Main {
 		List<Integer> p = new ArrayList<Integer>();
 		
 		search(n, m, p, chosen);
-		
+		System.out.println(sb.toString());
 	}
 }

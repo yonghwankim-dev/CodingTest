@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 
 public class Main {
 	
-
 	public static int solution(int n, int k, int[] weight, int[] value)
 	{
 		int[][] V = new int[n+1][k+1];
