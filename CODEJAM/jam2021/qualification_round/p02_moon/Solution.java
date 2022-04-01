@@ -3,9 +3,6 @@ package CODEJAM.jam2021.qualification_round.p02_moon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Solution {
 	
@@ -35,10 +32,12 @@ public class Solution {
 		{
 			if(s.charAt(i)=='C' || s.charAt(i)=='?')
 			{
+				// min(CC, JC+y)
 				dp[0][i] = Math.min(dp[0][i-1], dp[1][i-1]+y);
 			}
 			if(s.charAt(i)=='J' || s.charAt(i)=='?') 
 			{
+				// min(JJ, CJ+x)
 				dp[1][i] = Math.min(dp[1][i-1], dp[0][i-1]+x);
 			}
 		}

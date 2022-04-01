@@ -9,38 +9,44 @@ import java.util.List;
 
 public class Main {
 	static class Queue2{
-		static List<Integer> queue;
-		
+		int[] queue;
+		int front, back, size;
 		public Queue2() {
-			queue = new ArrayList<Integer>(); 
+			queue = new int[2000000];
+			front = 0;
+			back = 0;
+			size = 0;
 		}
 		
-		public static void push(int x){
-			queue.add(x);
+		public void push(int x){
+			queue[back] = x;
+			back++;
+			size++;
 		}
-		public static int pop() {
-			if(empty()==1) {
+		public int pop() {
+			if(size==0) {
 				return -1;
 			}
-			return queue.remove(0);
+			size--;
+			return queue[front++];
 		}
-		public static int size() {
-			return queue.size();
+		public int size() {
+			return size;
 		}
-		public static int empty() {
-			return (queue.size()==0 ? 1 : 0);
+		public int empty() {
+			return (size==0 ? 1 : 0);
 		}
-		public static int front() {
-			if(empty()==1) {
+		public int front() {
+			if(size==0) {
 				return -1;
 			}
-			return queue.get(0);
+			return queue[front];
 		}
-		public static int back() {
-			if(empty()==1) {
+		public int back() {
+			if(size==0) {
 				return -1;
 			}
-			return queue.get(queue.size()-1);
+			return queue[back-1];
 		}
 		
 	}
@@ -50,6 +56,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Queue2 q = new Queue2();
 		int n = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
 		
 		for(int i=0;i<n;i++){
 			String[] str = br.readLine().split(" ");
@@ -60,24 +67,25 @@ public class Main {
 				q.push(Integer.parseInt(str[1]));
 				break;
 			case "pop":
-				System.out.println(q.pop());
+				sb.append(q.pop()+"\n");
 				break;
 			case "size":
-				System.out.println(q.size());
+				sb.append(q.size()+"\n");
 				break;
 			case "empty":
-				System.out.println(q.empty());
+				sb.append(q.empty()+"\n");
 				break;
 			case "front":
-				System.out.println(q.front());
+				sb.append(q.front()+"\n");
 				break;
 			case "back":
-				System.out.println(q.back());
+				sb.append(q.back()+"\n");
 				break;
 			default:
 				break;
 			}
 		}
+		System.out.println(sb.toString());
 		
 	}
 }
