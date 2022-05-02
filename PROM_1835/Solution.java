@@ -68,17 +68,17 @@ public class Solution{
 	{
 		if(r.equals("="))
 		{
-			// |a가 있는 위치 - b가 있는 위치| = interval + 1
+			// |p1 위치 - b 위치| = interval + 1
 			return Math.abs(p1-p2) == interval + 1;
 		}
 		else if(r.equals(">"))
 		{
-			// |a가 있는 위치 - b가 있는 위치| > interval + 1
+			// |p1 위치 - b 위치| > interval + 1
 			return Math.abs(p1-p2) > interval + 1;
 		}
 		else
 		{
-			// |a가 있는 위치 - b가 있는 위치| < interval + 1
+			// |p1 위치 - b 위치| < interval + 1
 			return Math.abs(p1-p2) < interval + 1;
 		}
 	}
