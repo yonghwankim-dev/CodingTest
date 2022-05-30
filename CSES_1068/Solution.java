@@ -1,5 +1,4 @@
-//package CSES_1068;
-// title : Weird Algorithm
+package CSES_1068;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,25 +9,21 @@ import java.util.List;
 public class Solution {
 	public static void solution(long n)
 	{
-		long n_ = n;
-				
-		while(true)
-		{
-			System.out.print(n_+" ");
-			if(n_==1)
-			{
+		StringBuilder sb = new StringBuilder();
+		while(true) {
+			sb.append(n + " ");
+			if(n == 1) {
 				break;
 			}
-			else if(n_%2==0)
-			{
-				n_ = n_/2;
+			else if(n % 2 == 0) {
+				n = n / 2;
 			}
-			else 
-			{
-				n_ = n_*3+1;
+			else {
+				n = n * 3 + 1;
 			}
+			
 		}
-		
+		System.out.println(sb.toString().trim());
 	}
 	
 	public static void main(String args[]) throws NumberFormatException, IOException
