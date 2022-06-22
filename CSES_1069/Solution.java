@@ -1,4 +1,4 @@
-//package CSES_1069;
+package CSES_1069;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,17 +16,17 @@ public class Solution {
 		counter.put("G", 0);
 		counter.put("T", 0);
 		
-		int answer = 0;
+		int answer = 0;	// 가장긴 dna 길이
 		String[] seq = s.split("");
 		String prev = seq[0];
 		
 		for(String dna : seq) {
 			if(!dna.equals(prev)) {
-				answer = Math.max(answer, counter.get(prev));
+				answer = Math.max(answer, counter.get(prev)); // 이전 dna까지의 반복횟수와 최대길이와 비교하여 최대값 저장
 				prev = dna;
 				counter.put(dna, 0);
 			}
-			counter.put(dna, counter.get(dna) + 1);
+			counter.put(dna, counter.get(dna) + 1);	// 반복횟수 1 증가
 		}
 		
 		answer = Math.max(answer, counter.get(prev));

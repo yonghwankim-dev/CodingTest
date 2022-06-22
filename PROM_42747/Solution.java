@@ -1,43 +1,27 @@
 package PROM_42747;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 public class Solution {
-    public static int solution(int[] citations) {
-        int answer = 0;
-        
-        // 0. int array => List<Integer> 변환
-        List<Integer> list = Arrays.stream(citations).boxed().collect(Collectors.toList());
+	
+	
+    public int solution(int[] citations) {
+        int hIndex = 0;
+        int n      = citations.length; // 어떤 과학자의 발표한 논무 개수
+        int h      = 0; 			   // 해당 논문보다 인용횟수가 크거나 같은 논문 편수
         
         // 1. 오름차순 정렬
-        Collections.sort(list);
+        Arrays.sort(citations);
         
-        for(int i=0;i<list.size();i++)
-        {
-        	int A = list.size()-i;	// h번 이상 인용된 논문이 h편 이상인 개수
-        	int h = list.get(i);	// h번
-        	
-        	if(A>=h)
-        	{
-        		// 2. H-Index에 만족하는 경우
-        		answer = A;
+        // 2. 각각의 논문 인용 횟수 값이 h보다 크거나 같은지 검사
+        for(int i = 0; i < n; i++) {
+        	h = n - i; // 해당 요소(i)부터 마지막 요소까지의 요소 개수
+        	if(citations[i] >= h) {
+        		hIndex = h;
+        		break;
         	}
         }
         
-        return answer;
+        return hIndex;
     }
-	public static void main(String args[]) throws IOException
-	{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		//int[] citations = {3,0,6,1,5};
-		int[] citations = {31,66};
-		System.out.println(solution(citations));
-	}
 }
