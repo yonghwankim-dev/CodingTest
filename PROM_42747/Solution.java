@@ -1,4 +1,4 @@
-package PROM_42747;
+package PROM_42747
 
 import java.util.Arrays;
 
