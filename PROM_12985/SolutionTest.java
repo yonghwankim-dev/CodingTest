@@ -1,9 +1,8 @@
 package PROM_12985;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class SolutionTest {
 

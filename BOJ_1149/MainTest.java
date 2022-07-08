@@ -1,13 +1,11 @@
 package BOJ_1149;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-
-import org.junit.jupiter.api.Test;
 
 class MainTest {
 	static int[][] arr;

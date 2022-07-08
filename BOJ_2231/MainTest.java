@@ -1,6 +1,5 @@
 package BOJ_2231;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 

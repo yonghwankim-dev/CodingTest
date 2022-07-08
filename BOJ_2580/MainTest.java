@@ -1,9 +1,9 @@
 package BOJ_2580;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 

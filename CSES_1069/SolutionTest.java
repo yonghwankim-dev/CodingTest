@@ -1,8 +1,7 @@
 package CSES_1069;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static junit.framework.TestCase.assertEquals;
 
 class SolutionTest {
 

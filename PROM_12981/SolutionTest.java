@@ -1,11 +1,10 @@
 package PROM_12981;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.Test;
+import org.junit.jupiter.api.Order;
 
 import java.util.Arrays;
-
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 
 class SolutionTest {
 

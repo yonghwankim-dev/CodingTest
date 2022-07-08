@@ -1,9 +1,7 @@
 package BOJ_10844;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 class MainTest {
 
@@ -13,18 +11,10 @@ class MainTest {
 		
 		for(int n=1;n<=100;n++)
 		{
-			Main.solution(n);
-			System.out.println(Main.answer);
+			System.out.println(Main.solution(n));
+
 			
 		}
-		
-	}
-
-	@Test
-	void nEquals100() {
-		int n = 100;
-		Main.solution(n);
-		System.out.println(Main.answer%1000000000);
 		
 	}
 }

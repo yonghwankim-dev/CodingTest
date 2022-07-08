@@ -1,12 +1,7 @@
 package BOJ_12865;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class MainTest {
 

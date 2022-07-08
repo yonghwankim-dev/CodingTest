@@ -1,10 +1,9 @@
 package BOJ_2156;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import junit.framework.Assert;
+import static junit.framework.TestCase.assertEquals;
 
 class MainTest {
 
