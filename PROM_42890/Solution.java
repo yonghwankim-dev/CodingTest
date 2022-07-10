@@ -6,7 +6,6 @@ class Solution {
     private static List<String> list = new ArrayList<>();
 
     public int solution(String[][] relation) {
-
         int n = relation[0].length;
         int[] arr = new int[n];
         for(int i = 0; i < n; i++){
@@ -29,24 +28,9 @@ class Solution {
 
         // 3. 최소성을 만족하는 후보키 조합 탐색
         List<String> minimum = new ArrayList<>(unique);
-        for(int i = 0; i < unique.size(); i++){
-            String start = unique.get(i);
-            for(int j = 0; j < unique.size(); j++){
-                String target = unique.get(j);
-
-                if(start.equals(target)){
-                    continue;
-                }
-
-                int cnt = 0;
-                for(char c : start.toCharArray()){
-                    if(target.contains(String.valueOf(c))){
-                        cnt++;
-                    }
-                }
-                if(cnt == start.length()){
-                    minimum.remove(target);
-                }
+        for(String start : unique){
+            for(String target : unique){
+                deleteNotMinimum(start, target, minimum);
             }
         }
 
@@ -67,6 +51,23 @@ class Solution {
             return true;
         }
         return false;
+    }
+
+    public void deleteNotMinimum(String start, String target, List<String> minimum){
+        if(start.equals(target)){
+            return;
+        }
+
+        int cnt = 0;
+        for(char c : start.toCharArray()){
+            if(target.contains(String.valueOf(c))){
+                cnt++;
+            }
+        }
+
+        if(cnt == start.length()){
+            minimum.remove(target);
+        }
     }
 
 
