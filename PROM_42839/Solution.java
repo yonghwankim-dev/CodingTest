@@ -1,59 +1,68 @@
 package PROM_42839;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Solution{
-	
-	static int[] nums;
-	static int N;
-	public static void swap(int a, int b)
-	{
-		int temp = nums[a];
-		nums[a] = nums[b];
-		nums[b] = temp;
-	}
-	
-	public static void recursion(int n)
-	{
-		if(n==1)
-		{
-			for(int i=0;i<N;i++)
-			{
-				System.out.print(nums[i] + " ");
+	static int answer = 0;
+	static Set<Integer> set = new HashSet<>();
+	public boolean isPrime(int n){
+		if(n < 2){
+			return false;
+		}
+
+		for(int i = 2; i*i <= n; i++){
+			if(n % i == 0){
+				return false;
 			}
-			System.out.println();
 		}
-		for(int i=0; i<n; i++)
-		{
-			swap(i, n-1);
-			recursion(n-1);
-			swap(n-1,i);
+		return true;
+	}
+
+	public void permutation(int n, int r, List<Integer> perArr, boolean[] perCheck, int[] arr){
+		if(perArr.size() == r){
+			String s = "";
+			int target = 0;
+			for(int i : perArr){
+				s += i;
+			}
+			target = Integer.parseInt(s);
+			if(isPrime(target) && !set.contains(target)){
+				set.add(target);
+				answer++;
+			}
+			return;
+		}
+		for(int i = 0; i < n; i++){
+			if(!perCheck[i]){
+				perArr.add(arr[i]);
+				perCheck[i] = true;
+				permutation(n, r, perArr, perCheck, arr);
+				perCheck[i] = false;
+				perArr.remove(perArr.size()-1);
+			}
 		}
 	}
 	
-    public static int solution(String numbers) {
-       int answer = 0;
-       int n = N = numbers.length();
-       
-       List<Integer> list = new ArrayList<Integer>();
-       
-       nums = new int[n];
-       
-       
-       for(int i=0;i<numbers.length();i++)
-       {
-    	   nums[i] = numbers.charAt(i) - 48;
-       }
-       
-       recursion(n);
-       
-       return answer;
+    public int solution(String numbers) {
+
+		int[] arr = Arrays.stream(numbers.split("")).mapToInt(Integer::parseInt).toArray();
+		int n = arr.length;
+		answer = 0;
+
+		for(int i = 1; i <= n; i++){
+			List<Integer> perArr = new ArrayList<>();
+			boolean[] perCheck = new boolean[n];
+			permutation(n, i, perArr, perCheck, arr);
+		}
+
+		return answer;
+
     }
     
 	public static void main(String args[])
 	{
-		solution("17");
+		String numbers = "011";
+		int answer = new Solution().solution(numbers);
+		System.out.println(answer);
 	}
 }
