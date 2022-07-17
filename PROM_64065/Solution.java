@@ -26,7 +26,7 @@ public class Solution {
 
         answer = new int[counter.size()];
 
-        // 부분집합에서 가장 빈번히 나온 숫자의 내림차순
+        // 부분집합에서 가장 빈번히 나온 숫자의 내림차순 탐색하여 저장
         int i = 0;
         while(counter.size() != 0){
             int max_key = 0;
